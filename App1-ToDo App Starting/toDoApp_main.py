@@ -50,21 +50,21 @@ while True:
                 # Edit mode conditions--3
                 try: 
                     edit_task_no == int(edit_task_no)
-                    
+                    edit_task_no = int(edit_task_no)
                     if edit_task_no in range(1,len_todo+1):
                         # check if entered task no. is in range of todo_list indexes
                         # Actual index position in list would be n-1
                         todo_list[(edit_task_no - 1)]=input(">>>Add updated task: ")
                         print(f"Task no.{edit_task_no} updated !!\n")
-                        break
+                        continue
                         # Task edit done! Exit the editing mode 
                     else :
                         edit_task_no = input(f">>>Enter a valid task no. between 1 - {len_todo}) OR Cancel :")
-                        if((edit_task_no).lower()=="cancel"):
-                            print("Cancelling edit mode")
-                            continue
-                except ValueError:
+                        break
+                # elif  edit_task_no!= int(edit_task_no) or (edit_task_no).lower()!="cancel":
+                except:    
                     print("\nInvalid input. Please enter a number.\n")
+                    continue
     
                 
             # for case-3: user opts to Exit
