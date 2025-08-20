@@ -1,34 +1,60 @@
 # The ToDo App should follow the input>>processing>>output workflow
 # Create such  that takes user input repeatedly (unless interrupted by user): also storing the ToDos in a txt file
-todo_list = []
-edit_flag=False
-# Run until user opts to Exit:
+import os
+# todo_list = [] #***Earlier starting point to initialize empty list***
+# ***********************New Starting point -- read/write to a txt file*************************
+
+# Create file in the same path as py file
+pyfile_path = os.path.dirname(os.path.abspath(__file__))
+txtfile_path = os.path.join(pyfile_path,"todoList.txt")
+# Check if file already exists -- else create new file
+# If its empty file, then empty list is created anyways
+if os.path.exists(txtfile_path):
+    with open(txtfile_path,"r") as f:
+        # Replicates same todo_list=[] as earlier method ; also removes \n character 
+        contents = f.readlines()
+        todo_list = [x.strip() for x in contents]
+    # Else create & open an empty file & also initiate an empty list
+else:
+    with open(txtfile_path,"w") as f:
+        # List used for operations -- add, show, edit, done
+        todo_list=[]
+
+# *****************************Run until user opts to Exit:****************************************
 while True:
     len_todo = len(todo_list)
     user_action = input(">>>Type add/ edit/ show/ done/ exit: ")
     # using match-case for scenarios based on user input:
     match user_action.lower().strip():
-        # for case-1 : adding a task
+        # ***************for case-1 : adding a task*****************************************
         case 'add':
-            todo = input(">>>Enter task: ")
+            todo = input(">>>Enter task: ") + "\n"
             todo_list.append(todo)
+            # Add single task to the end of existing file
+            with open(txtfile_path,"a") as f:
+                f.write(todo)
             print(f"===✅New task Added!===\n{todo_list[-1]}\n")
-        # for case-2 : showing tasks added so far
+        # ****************for case-2 : SHOW added tasks*************************************
         case 'show':
             if len_todo>0:
                 # print(f"Following tasks in the ToDo:")
                 # Intro message
                 if len_todo==1:
-                    print(f"Your ToDo has an open task:")
+                    print(f"====📄Your ToDo has an open task:====")
                 elif len_todo >1:
-                    print(f"Total {len_todo} tasks in ToDo:")
+                    print(f"====📄Your ToDo has {len_todo} Open tasks:====")
                 # Show the ToDo list
-                for index, each in enumerate(todo_list):
-                    print(f"{(index+1)} - {each}")
+                with open(txtfile_path,"r") as f:
+                    inter=[x.strip() for x in f.readlines()]
+                    for index,val in enumerate(inter):
+                        print(f"{index+1}-{val}")
+                
+                #for index, each in enumerate(todo_list):
+                #    print(f"{(index+1)} - {each}")
                 print("\n")
             else: 
                 print("🫙No tasks to show, add a few tasks first to edit\n")
-        # case-3: user opts to edit a task
+        # ******************case-3 : user opts to edit a task*******************************
         case 'edit':
             # Remain in edit mode until edit flag is reset
             # Edit mode conditions 1 -- If ToDo list is empty, go back to main menu          
@@ -67,7 +93,7 @@ while True:
                     print("\nInvalid input. Please enter a number.\n")
                     continue
     
-        # for case-3: mark a task as done
+        # *********************for case-3: mark a task as done***********************************
         case 'done':
             if len_todo==0:
                 print("🫙No tasks to edit, add a few tasks first to edit\n")
@@ -90,4 +116,4 @@ while True:
         # for case-4: user opts to Exit
         case 'exit':
             break
-print("---------end of loop, bye!🔚--------\n")
+print("---------end of loop, bye!👋🏻--------\n")
