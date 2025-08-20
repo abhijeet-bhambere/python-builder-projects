@@ -1,5 +1,5 @@
 # The ToDo App should follow the input>>processing>>output workflow
-# Create such  that takes user input repeatedly (unless interrupted by user): also storing the ToDos in a list 
+# Create such  that takes user input repeatedly (unless interrupted by user): also storing the ToDos in a txt file
 todo_list = []
 edit_flag=False
 # Run until user opts to Exit:
