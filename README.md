@@ -1,23 +1,29 @@
 # python-builder-projects
-repo containing building phase of my python journey #learning_by_building
+This repo contains building phase of my python journey #learning_by_building
 
-The repo will contain all apps built as part of the builder phase of my python journey. 
+The repo will contain several apps built as part of the 'builder' phase of my python journey 🛠️.
 
-It's going to be a collection of apps that will begin with showcasing some basics but crucial concpets
 
-## List of apps:
-### 1. **ToDo list:** 
-Starting with the basics (again 🙄)! <br>
-Yet another basics grid but important, especially since it works on some of the core data types in python :
+# List of apps:
+## 1. **ToDo list:** 
+But before that, starting with the basics (again 🙄)! <br>
+Yet another basics grid but this one's important, especially since it works on some of the core data types in python:
   
-    a. handling Files
+    a. Lists operations
     
-    b. Lists &
+    b. File handling
     
-    c. Dictionaries
+    c. for, while loops ; try-except scenarios etc.
 
-
+### Day 7: 
+   Introducing File-handling with the  `with`, `open()`, `write()` funtions📄.
    
-### 2. App2
+   This will enable a more stable storage space since earlier tasks would last only for the current instance of the script.
 
-### 3. App3
+   Later on will move onto SQL or web-hosting, possibly a streamlit-to-SQL route 🛢️🔁🖥️.
+
+
+
+## 2. App2
+
+## 3. App3
