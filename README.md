@@ -7,16 +7,15 @@ Each layer in this stack covers topics like data structures, file handling, cont
 
 Explore the stack, review the code, and follow along as I progress from foundational exercises to more advanced solutions.
 
+# List of Apps:
+## 1. [ToDo list](./App1-ToDo%20App%20Starting)🗒️
+Initially programmed as a command-line app for managing tasks; 
 
----
-
-## List of Apps:
-### 1. [ToDo list](./App1-ToDo%20App%20Starting))📃
-Initially programmed as a command-line app for managing tasks; Now progressing to demonstrate file I/O & user interaction.
+Now progressing to demonstrate file I/O & user interaction.
 
 Later planned to showcase web development using streamlit-SQL.
 
----
-### 2. App2
----
-### 3. App3
+
+## 2. App2
+
+## 3. App3
