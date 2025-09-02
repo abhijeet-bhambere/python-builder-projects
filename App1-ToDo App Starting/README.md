@@ -1,3 +1,5 @@
+# Old Version - Uses `match-case`
+This code is now archived in separate branch -- main branch will use `if-else` logic.
 
 ## App #1 - ToDo list:
 Starting with the basics (I know,again)! Yet another basics grid but this one's important, especially since it helps revise on some of the core data types & their methods in python:
@@ -17,5 +19,5 @@ This will enable a more stable storage space since earlier tasks would last only
 
 Later on will move onto SQL or web-hosting, possibly a streamlit-to-SQL route 🛢️🔁🖥️.
 
-### Day 8\n
+### Day 8-10
 Extended logic of file handling to edit & 'mark as done' operations.
