@@ -17,5 +17,17 @@ This will enable a more stable storage space since earlier tasks would last only
 
 Later on will move onto SQL or web-hosting, possibly a streamlit-to-SQL route 🛢️🔁🖥️.
 
-### Day 8\n
+### Day 8-15
 Extended logic of file handling to edit & 'mark as done' operations.
+
+Adding new feature: typing the ToDo task directly after typing the 'add' keyword.<br> 
+_E.g. `>>Enter task: add Order book online`_
+
+This will combine 2 steps -- one of typing the 'add' keyword step and that of adding the actual ToDo task. 
+
+>📢**Altering conditional logic -- Switching to `if-else`** for implementing control flow of user input mentioned above.
+
+
+
+
+
