@@ -1,3 +1,6 @@
+# Old Version - 
+## Milestone: replaced `match-case` with `if-else`
+This code is now archived in separate branch -- main branch will use be improved further with functions.
 
 ## App #1 - ToDo list:
 Starting with the basics (I know,again)! Yet another basics grid but this one's important, especially since it helps revise on some of the core data types & their methods in python:
@@ -32,3 +35,5 @@ Using string methods such as `startswith()` to fix bugs for user actions that co
 
 The program will check if keywords are in the beginning of the input string;<br>
 _For e.g. if user types text containing 'add' during edit sequence instead of entering a ToDo number._
+_____
+
