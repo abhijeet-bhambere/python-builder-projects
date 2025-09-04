@@ -28,7 +28,7 @@ while True:
     user_action = user_action.lower().strip()
     # moving to if-else for scenarios based on user input:
         # ***************for case-1 : adding a task*****************************************
-    if 'add' in user_action:
+    if user_action.startswith('add'):
         todo = user_action[4:]
         todo_list.append(todo)
         # Add single task to the end of existing file
@@ -36,7 +36,7 @@ while True:
             f.write(todo + "\n")
         print(f"===✅New task Added!===\n{todo_list[-1]}\n")
     # ********************for case-2 : SHOW added tasks*************************************
-    elif 'show' in user_action:
+    elif user_action.startswith('show'):
         if len_todo>0:
             # print(f"Following tasks in the ToDo:")
             # Intro message
@@ -57,56 +57,44 @@ while True:
             print("🫙No tasks to show, add a few tasks first to edit\n")
     # *********************case-3 : user opts to edit a task*********************************
     # Creating much simplified Edit mode--user directly mentions task to edit in options itself
-    elif 'edit' in user_action:
+    elif user_action.startswith('edit'):
         # Remain in edit mode until edit flag is reset
         # Edit mode conditions 1 -- If ToDo list is empty, go back to main menu          
         if len_todo==0:
             print("🫙No tasks to edit, add a few tasks first to edit\n")
             continue
-        else:
-            edit_task_no = int(user_action[4:])
-        # while True:
-        #     print(f">>>Select Task to edit (a no. between 1 - {len_todo}) OR Cancel :")
-        #     # show the ToDo list
-        #     with open(txtfile_path,"r") as f:
-        #         inter=[x.strip() for x in f.readlines()]
-        #         for index,val in enumerate(inter):
-        #             print(f"{index+1}-{val}")
-        #     # Ask for user choice
-        #     edit_task_no = input(">>>Enter task no. OR type cancel:")
-        #     # Edit mode conditions--2
-        #     if((edit_task_no).lower()=="cancel"):
-        #         print("=====⛔Cancelling edit mode=====\n")
-        #         break
-            
+        try:
+            edit_task_no = int(user_action[4:])            
             # Edit mode conditions--3
-
-            try:
-                if edit_task_no in range(1,len_todo+1):
-                    # check if entered task no. is in range of todo_list indexes
-                    # Actual index position in list would be n-1
-                    todo_list[(edit_task_no - 1)]=input(">>>Add updated task: ")
-                    # Modify the task & add entire list to txt                           
+            
+            if edit_task_no in range(1,len_todo+1):
+                # check if entered task no. is in range of todo_list indexes
+                # Actual index position in list would be n-1
+                todo_list[(edit_task_no - 1)]=input(f">>>Update ToDo no.{edit_task_no} OR cancel update: ").lower().strip()
+                if todo_list[(edit_task_no - 1)].startswith("cancel"):
+                    print(f"=====🚫 Update cancelled=====")
+                    continue
+                # Modify the task & add entire list to txt
+                else:
                     with open(txtfile_path,"w") as f:
                         f.writelines([x + "\n" for x in todo_list])
                     print(f"=====✅Task no.{edit_task_no} updated!!=====\n")
-                    
-                    # Task edit done! Exit the editing mode
-                    
-                else :
-                    print(f"⚠️  Enter valid task no.(1 - {len_todo}) to edit")
-                    
-            # elif  edit_task_no!= int(edit_task_no) or (edit_task_no).lower()!="cancel":
-            except:    
-                print("\nInvalid input. Please enter a number.\n")
                 
+                # Task edit done! Exit the editing mode
+                
+            else :
+                print(f"⚠️  Enter valid task no.(1 - {len_todo}) to edit")
+                
+        # elif  edit_task_no!= int(edit_task_no) or (edit_task_no).lower()!="cancel":
+        except ValueError:    
+            print("\n⚠️  Invalid input. Please enter a number.\n")
+            
 
     # ************************for case-4: mark a task as done*********************************
     # Adding similar logic to reduce user input actions to mark a ToDo as 'done'
-    elif 'done' in user_action:
+    elif user_action.startswith('done'):
         if len_todo==0:
             print("🫙No tasks to edit, add a few tasks first to edit\n")
-            # continue
         
         else:
             try:
@@ -114,27 +102,30 @@ while True:
                 # done_task_no = input(f">>>Enter Task No.(1-{len_todo}) to mark as Done:")
                 done_task_no = int(user_action[5:])
 
-                if done_task_no not in range(1,len_todo+1):
-                    print(f"⚠️ Enter valid Task No. between (1-{len_todo})")
-            
-                elif done_task_no in range(1,len_todo):                
-                    # while done_task_no in range(1,len_todo+1):
+                try:
+                    done_task_no = int(user_action[5:])
+    
+                    # if done_task_no in range(1,len_todo+1):
                     todo_list.pop(done_task_no - 1)
 
-                        # Remove the task & add updated list to txt file
+                    # Remove the task & add updated list to txt file
                     with open(txtfile_path,"w") as f:
                         f.writelines([x+"\n" for x in todo_list])
                     print("=====✅  Task marked Done!=====\n")
                 
-                else:
-                    print(f">>>No. out of range. Enter Task No.(1-{len_todo+1})")
-                        
+                except IndexError:
+                    print(f"⚠️ Task No. not in range. Enter a valid no. between (1-{len_todo})")
+                    continue            
+                                        
             except ValueError:
                 print(f"⚠️ Enter valid Task No. between (1-{len_todo}) to mark as Done:")
+                continue
                     
     # ******************************for case-5: user opts to Exit*****************************
-    elif 'exit' in user_action:
+    elif user_action.startswith('exit'):
         break
+    
+    # ******************************for case-6: invalid user input*****************************
     else:
         print("Enter valid command from the options")
 print("---------end of loop, bye!👋🏻--------\n")
