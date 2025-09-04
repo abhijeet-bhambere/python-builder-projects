@@ -32,3 +32,7 @@ Using string methods such as `startswith()` to fix bugs for user actions that co
 
 The program will check if keywords are in the beginning of the input string;<br>
 _For e.g. if user types text containing 'add' during edit sequence instead of entering a ToDo number._
+
+### Day 15-22
+Introducing functions into the program logic for repititive code blocks.
+This will enhance the overall code quality, readability and development efficiency.

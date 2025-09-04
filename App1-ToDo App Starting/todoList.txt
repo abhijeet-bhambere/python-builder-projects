@@ -1,2 +1,5 @@
 gym
 go to run
+fix bugs & update repo
+push to commmit
+buy online
