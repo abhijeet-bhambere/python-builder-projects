@@ -20,14 +20,15 @@ Later on will move onto SQL or web-hosting, possibly a streamlit-to-SQL route ðŸ
 ### Day 8-15
 Extended logic of file handling to edit & 'mark as done' operations.
 
-Adding new feature: typing the ToDo task directly after typing the 'add' keyword.<br> 
+**Adding new feature**: typing the ToDo task directly after typing the 'add' keyword.<br> 
 _E.g. `>>Enter task: add Order book online`_
-
 This will combine 2 steps -- one of typing the 'add' keyword step and that of adding the actual ToDo task. 
 
 >ðŸ“¢**Altering conditional logic -- Switching to `if-else`** for implementing control flow of user input mentioned above.
 
+Also, implemented use of the `continue` statement to skip certain code blocks based on logical flow & move to the start of the iteration i.e. to _`>>>Type add/ edit/ show/ done/ exit:`_
 
+Using string methods such as `startswith()` to fix bugs for user actions that could contain confounding scenarios or user inputs.
 
-
-
+The program will check if keywords are in the beginning of the input string;<br>
+_For e.g. if user types text containing 'add' during edit sequence instead of entering a ToDo number._
