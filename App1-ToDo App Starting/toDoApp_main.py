@@ -6,27 +6,13 @@ import os
 pyfile_path = os.path.dirname(os.path.abspath(__file__))
 txtfile_path = os.path.join(pyfile_path,"todoList.txt")
 
-# **********New-Functions-Add parameters for file_path later if reqd***********
-# get_todo func--reads txt & displays the ToDos
-def get_todos():
-    """reads txt file & displays the ToDos as a list"""
-    with open(txtfile_path,"r") as f:
-        contents = f.readlines()
-        todo_list_int = [x.strip("\n") for x in contents]
-    return todo_list_int
+# **********New-Functions shifted to a new modules py file***********
 
-# write_todo function is more like a procedure - not meant to return any value
-def write_todos():
-    """This func is more like a procedure - not meant to return any value.
-
-    Writes the updated `todo_list` back into the txt file."""
-    with open(txtfile_path,"w") as f:
-        f.writelines([x + "\n" for x in todo_list])
-
+from toDoApp_modules  import todo_funcs
 
 # *****************Check if file already exists -- else create new file**********************
 if os.path.exists(txtfile_path):
-    todo_list = get_todos()
+    todo_list = todo_funcs.get_todos(txtfile_path=txtfile_path)
     print(todo_list)
 else:
     # List used for operations -- add, show, edit, done
@@ -46,7 +32,7 @@ while True:
         todo_list.append(todo)
         # Add single task to the end of existing file
         # Invoking the write_todo function
-        write_todos()
+        todo_funcs.write_todos(txtfile_path=txtfile_path, todo_list=todo_list)
         # with open(txtfile_path,"a") as f:
         #     f.write(todo + "\n")
         print(f"===✅New task Added!===\n{todo_list[-1]}\n")
@@ -61,7 +47,7 @@ while True:
             elif len_todo >1:
                 print(f"====📄Your ToDo has {len_todo} Open tasks:====")
             # Show the ToDo list
-            inter=get_todos()
+            inter=todo_funcs.get_todos(txtfile_path=txtfile_path)
             for index,val in enumerate(inter):
                 print(f"{index+1}-{val}")
             
@@ -92,7 +78,7 @@ while True:
                     continue
                 # Modify the task & add entire list to txt
                 else:
-                    write_todos()
+                    todo_funcs.write_todos(txtfile_path=txtfile_path, todo_list=todo_list)
                     # with open(txtfile_path,"w") as f:
                     #     f.writelines([x + "\n" for x in todo_list])
                     print(f"=====✅Task no.{edit_task_no} updated!!=====\n")
@@ -125,7 +111,7 @@ while True:
                     todo_list.pop(done_task_no - 1)
 
                     # Remove the task & add updated list to txt file
-                    write_todos()
+                    todo_funcs.write_todos(txtfile_path=txtfile_path, todo_list=todo_list)
                     # with open(txtfile_path,"w") as f:
                     #     f.writelines([x + "\n" for x in todo_list])
                     print("=====✅  Task marked Done!=====\n")
