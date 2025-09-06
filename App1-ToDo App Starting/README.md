@@ -36,3 +36,8 @@ _For e.g. if user types text containing 'add' during edit sequence instead of en
 ### Day 15-22
 Introducing functions into the program logic for repititive code blocks.
 This will enhance the overall code quality, readability and development efficiency.
+
+**Creating a module** : going further with functions. Separated the code into module files. So the functions are now called from the module file by using the `import` keyword:
+
+>`import module as md` OR `from this_module import a_function`
+
