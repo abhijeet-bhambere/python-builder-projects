@@ -1,23 +1,25 @@
 # The ToDo App should follow the input>>processing>>output workflow
 # Create such  that takes user input repeatedly (unless interrupted by user): also storing the ToDos in a txt file
-import os
+
 # *********************************NEW--Defining functions**************************************
 # Create file in the same path as py file
-pyfile_path = os.path.dirname(os.path.abspath(__file__))
-txtfile_path = os.path.join(pyfile_path,"todoList.txt")
+# import os
+# pyfile_path = os.path.dirname(os.path.abspath(__file__))
+# txtfile_path = os.path.join(pyfile_path,"todoList.txt")
 
-# **********New-Functions shifted to a new modules py file***********
-
-from toDoApp_modules  import todo_funcs
+# **********New-Functions shifted into same location as main py file***********
+import todo_functions as todo_funcs
 
 # *****************Check if file already exists -- else create new file**********************
-if os.path.exists(txtfile_path):
-    todo_list = todo_funcs.get_todos(txtfile_path=txtfile_path)
-    print(todo_list)
-else:
-    # List used for operations -- add, show, edit, done
-    with open(txtfile_path,"w") as f:
-        todo_list=[]
+# if os.path.exists(txtfile_path):
+#     todo_list = todo_funcs.get_todos()
+#     print(todo_list)
+# else:
+#     # Define the list used for operations -- add, show, edit, done
+#     with open(txtfile_path,"w") as f:
+#         todo_list=[]
+todo_list = todo_funcs.get_todos()
+
 
 # ***********************************>Run until user opts to Exit:<*******************************
 while True:
@@ -29,30 +31,24 @@ while True:
     # **************************for case-1 : adding a task*********************************
     if user_action.startswith('add'):
         todo = user_action[4:]
-        todo_list.append(todo)
         # Add single task to the end of existing file
+        todo_list.append(todo)
         # Invoking the write_todo function
-        todo_funcs.write_todos(txtfile_path=txtfile_path, todo_list=todo_list)
-        # with open(txtfile_path,"a") as f:
-        #     f.write(todo + "\n")
+        todo_funcs.write_todos(todo_list=todo_list)
         print(f"===✅New task Added!===\n{todo_list[-1]}\n")
 
     # **************************for case-2 : SHOW added tasks******************************
     elif user_action.startswith('show'):
         if len_todo>0:
-            # print(f"Following tasks in the ToDo:")
-            # Intro message
             if len_todo==1:
                 print(f"====📄Your ToDo has an open task:====")
             elif len_todo >1:
                 print(f"====📄Your ToDo has {len_todo} Open tasks:====")
             # Show the ToDo list
-            inter=todo_funcs.get_todos(txtfile_path=txtfile_path)
+            inter=todo_funcs.get_todos()
             for index,val in enumerate(inter):
                 print(f"{index+1}-{val}")
             
-            #for index, each in enumerate(todo_list):
-            #    print(f"{(index+1)} - {each}")
             print("\n")
         else: 
             print("🫙No tasks to show, add a few tasks first to edit\n")
@@ -78,11 +74,8 @@ while True:
                     continue
                 # Modify the task & add entire list to txt
                 else:
-                    todo_funcs.write_todos(txtfile_path=txtfile_path, todo_list=todo_list)
-                    # with open(txtfile_path,"w") as f:
-                    #     f.writelines([x + "\n" for x in todo_list])
-                    print(f"=====✅Task no.{edit_task_no} updated!!=====\n")
-                
+                    todo_funcs.write_todos(todo_list=todo_list)
+                    print(f"=====✅Task no.{edit_task_no} updated!!=====\n")                
                 # Task edit done! Exit the editing mode
                 
             else :
@@ -101,7 +94,6 @@ while True:
         else:
             try:
                 # Ask user input - directly taken from main action selection step
-                # done_task_no = input(f">>>Enter Task No.(1-{len_todo}) to mark as Done:")
                 done_task_no = int(user_action[5:])
 
                 try:
@@ -111,9 +103,7 @@ while True:
                     todo_list.pop(done_task_no - 1)
 
                     # Remove the task & add updated list to txt file
-                    todo_funcs.write_todos(txtfile_path=txtfile_path, todo_list=todo_list)
-                    # with open(txtfile_path,"w") as f:
-                    #     f.writelines([x + "\n" for x in todo_list])
+                    todo_funcs.write_todos(todo_list=todo_list)
                     print("=====✅  Task marked Done!=====\n")
                 
                 except IndexError:
