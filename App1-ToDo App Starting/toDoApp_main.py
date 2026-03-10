@@ -9,15 +9,9 @@
 
 # **********New-Functions shifted into same location as main py file***********
 import todo_functions as todo_funcs
+import time
 
-# *****************Check if file already exists -- else create new file**********************
-# if os.path.exists(txtfile_path):
-#     todo_list = todo_funcs.get_todos()
-#     print(todo_list)
-# else:
-#     # Define the list used for operations -- add, show, edit, done
-#     with open(txtfile_path,"w") as f:
-#         todo_list=[]
+# Fetch todoList OR create one in a first-runtime scenario
 todo_list = todo_funcs.get_todos()
 
 
@@ -116,9 +110,19 @@ while True:
                     
     # ******************************for case-5: user opts to Exit*****************************
     elif user_action.startswith('exit'):
+
         break
     
     # ******************************for case-6: invalid user input*****************************
     else:
+
         print("Enter valid command from the options")
-print("---------end of loop, bye!👋🏻--------\n")
+
+print('===exiting', end='', flush=True)
+for _ in range(4):
+    time.sleep(0.5)
+    print(".", end='',flush=True)
+print('===\n', end='', flush=True)
+print('===================================================================')
+print("|------------------------------THE END----------------------------|")
+print('===================================================================')
