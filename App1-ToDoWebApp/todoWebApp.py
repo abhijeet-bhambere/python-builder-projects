@@ -22,7 +22,7 @@ for i,todo in enumerate(todos):
         todos.pop(i)
         # Update todolist txt
         tf.write_todos(todos)
-
+        # delete from session_state dict 
         del st.session_state[todo]
         #restarts the py script from beginning
         st.rerun() 
