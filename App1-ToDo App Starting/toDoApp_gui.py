@@ -9,10 +9,10 @@ sg.theme('BrownBlue')
 label_clock = sg.Text('',key="clock") 
 label = sg.Text("Type a ToDo")
 inputbox = sg.InputText(tooltip="Enter a ToDo:", key="todo")
-addbutton = sg.Button("Add")
-editbutton = sg.Button("Edit")
-donebutton = sg.Button("Done")
-exitbutton = sg.Button("Exit App")
+addbutton = sg.Button("Add", button_color=("green","lightgreen"), tooltip="Click to add new ToDo ")
+editbutton = sg.Button("Edit", tooltip="Select a ToDo to Edit")
+donebutton = sg.Button("Done", tooltip="Select a ToDo to mark Done")
+exitbutton = sg.Button("Exit App", tooltip="Click to Close the App")
 
 # displaying the existing ToDos:
 list_box = sg.Listbox(values=tf.get_todos(), key="todos", enable_events=True, size=[50,18])
@@ -21,7 +21,7 @@ list_box = sg.Listbox(values=tf.get_todos(), key="todos", enable_events=True, si
 layout = [[label_clock],
         [label], 
         [inputbox,addbutton],
-        [list_box, editbutton, donebutton],
+        [list_box, [editbutton, donebutton]],
         [exitbutton]]
 # With a multi-line window layout
 window = sg.Window("The ToDo App", font=('Helvetica',10) ,layout=layout)
@@ -79,7 +79,7 @@ while True:
                 # Access updated listBox to refresh & display updated ToDo list in real-time
                 window['todos'].Update(values=todo_list)
                 # Also update the inputBox value on ExitButton action
-                window['todo'].Update(values='')
+                window['todo'].Update(values=' ')
             except IndexError:
                 sg.popup("Select a ToDo first...", font=('Helvetica',10))
 
