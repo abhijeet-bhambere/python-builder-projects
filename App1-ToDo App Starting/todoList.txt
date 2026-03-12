@@ -1,8 +1,6 @@
+go to office
+go for a walk
 go to gym
-go to run
-fix bugs & update repo
-push to commmit
-get new code
-learn python
-get back on track!
-add features
+fix bugs in the code
+create github repo
+fix bugs in the code & add comments

@@ -1,13 +1,8 @@
 # The ToDo App should follow the input>>processing>>output workflow
 # Create such  that takes user input repeatedly (unless interrupted by user): also storing the ToDos in a txt file
 
-# *********************************NEW--Defining functions**************************************
-# Create file in the same path as py file
-# import os
-# pyfile_path = os.path.dirname(os.path.abspath(__file__))
-# txtfile_path = os.path.join(pyfile_path,"todoList.txt")
 
-# **********New-Functions shifted into same location as main py file***********
+# **********New- Functions shifted into same location as main py file***********
 import todo_functions as todo_funcs
 import time
 
